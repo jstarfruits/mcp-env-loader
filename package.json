@@ -1,0 +1,48 @@
+{
+  "name": "mcp-env-loader",
+  "version": "0.1.0",
+  "description": "Environment loader and validator for stdio MCP servers",
+  "type": "module",
+  "main": "dist/cjs/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "npm run clean && npm run build:esm && npm run build:cjs && npm run build:cjs:pkg",
+    "build:esm": "tsc -p tsconfig.json",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:cjs:pkg": "mkdir -p dist/cjs && printf '{\"type\":\"commonjs\"}\\n' > dist/cjs/package.json",
+    "clean": "rm -rf dist",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepublishOnly": "npm test && npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "env",
+    "dotenv",
+    "stdio"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "typescript": "^5.8.3",
+    "vitest": "^2.1.9"
+  }
+}
