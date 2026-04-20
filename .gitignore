@@ -4,3 +4,4 @@ dist
 .env.local
 .env.mcp
 *.log
+.npm-cache/
